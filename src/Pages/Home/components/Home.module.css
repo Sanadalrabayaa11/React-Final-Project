@@ -1,0 +1,20 @@
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+.home-heading {
+  animation: slideInLeft 10s linear infinite;
+}
+.container {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.cover{
+    width: 100%;
+    margin-top: 2%;
+}  

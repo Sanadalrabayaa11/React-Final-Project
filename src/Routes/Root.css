@@ -1,0 +1,12 @@
+/* Define global styles for dark mode */
+body.dark-mode {
+  background-color: #000;
+  background-color: #000000e2;
+  color: #fff;
+  transition: 0.9s;
+}
+button  {
+  cursor: pointer;
+  border-radius: 50%;
+  border: 0;
+}

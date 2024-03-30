@@ -1,0 +1,25 @@
+.nav-link.active {
+  border-bottom: 3px solid #090909;
+}
+
+.logo {
+  color: #0fbcdffd;
+  font-size: 26px;
+}
+.logoGit {
+  color: #0fbcdffd;
+  font-size: 36px;
+}
+
+.bg-dark {
+  --bs-bg-opacity: 0;
+  background-color: #000000e2;
+}
+.bg-light {
+  --bs-bg-opacity: 0;
+  background-color: #eee;
+}
+.mode {
+  font-size: 26px;
+  background-color: #0fbcdffd;
+}

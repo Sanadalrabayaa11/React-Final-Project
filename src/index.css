@@ -1,0 +1,20 @@
+/* Track */
+::-webkit-scrollbar-track {
+  background: #002b3cfd; /* Color of the track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #007a93cc; /* Color of the scrollbar handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0fbcdffd ; /* Color of the scrollbar handle on hover */
+}
+
+/* Optional: Adjust scrollbar width and height */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+  height: 12px; /* Height of the scrollbar */
+}
