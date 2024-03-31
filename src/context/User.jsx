@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
-//import { Bounce, toast } from "react-toastify";
+import { Bounce, toast } from "react-toastify";
 export const UserContext = createContext();
 
 // eslint-disable-next-line react/prop-types
@@ -21,7 +21,7 @@ const UserContextProvider = ({ children }) => {
     try {
       const token = localStorage.getItem("userToken");
       const { data } = await axios.get(
-        `${import.meta.env.VITE_API}/cart/count`,
+        `${import.meta.env.VITE_API}/cart`,
         {
           headers: {
             Authorization: `Tariq__${token}`,
@@ -31,7 +31,7 @@ const UserContextProvider = ({ children }) => {
       setCartCount(data.count);
     } catch (error) {
       // console.error("Error fetching cart count:", error);
-      /* toast.error(error.response.data.message, {
+       toast.error(error.response.data.message, {
         position: "bottom-center",
         autoClose: false,
         hideProgressBar: false,
@@ -42,7 +42,7 @@ const UserContextProvider = ({ children }) => {
         theme: "dark",
         transition: Bounce,
       });
-    */
+    
     }
   };
 
