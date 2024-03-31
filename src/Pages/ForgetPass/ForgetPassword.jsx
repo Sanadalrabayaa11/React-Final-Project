@@ -1,21 +1,19 @@
-import  { useState } from "react";
-import "./ForgetPass.css";
+import { useState } from "react";
 import axios from "axios";
 import { object, string } from "yup";
 import { Bounce, toast } from "react-toastify";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ForgetPassword() {
-  
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
-  const [errors,setErrors]= useState([]);
+  const [errors, setErrors] = useState([]);
   const [user, setUser] = useState({
     email: "",
     password: "",
     code: "",
   });
- 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({
@@ -30,7 +28,7 @@ function ForgetPassword() {
       password: string().required().min(5).max(20),
       code: string().required().min(4).max(4),
     });
-  
+
     try {
       await logSchema.validate(user, { abortEarly: false });
       setErrors([errors.errors]);
@@ -59,7 +57,6 @@ function ForgetPassword() {
       return false; // Validation failed
     }
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,12 +64,16 @@ function ForgetPassword() {
 
     if (await validateData()) {
       try {
-        const { data } = await axios.patch( `${import.meta.env.VITE_API}/auth/forgotPassword`, { ...user } );
-        
-        if( data.message=='success'){
-        toast.success("Success Notification !");
-        navigate("/Login");
-      }} catch (err) {
+        const { data } = await axios.patch(
+          `${import.meta.env.VITE_API}/auth/forgotPassword`,
+          { ...user }
+        );
+
+        if (data.message == "success") {
+          toast.success("Success Notification !");
+          navigate("/Login");
+        }
+      } catch (err) {
         setLoader(false);
         setErrors(err.errors);
         toast.error("Error sending reset password email. Please try again.");
@@ -85,13 +86,21 @@ function ForgetPassword() {
   return (
     <>
       <div className="border border-info">
-      <h1 className="text-capitalize text-center fs-1 mb-5 mt-5 fw-bold  ">
-<svg xmlns="http://www.w3.org/2000/svg" width={60} height={60} fill="currentColor" className="bi bi-person text-info" viewBox="0 0 16 16">
-  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
-</svg>
-Account recovery</h1>
-            <form onSubmit={handleSubmit}className="text-center">
-            <div className="row mb-3 ">
+        <h1 className="text-capitalize text-center fs-1 mb-5 mt-5 fw-bold  ">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={60}
+            height={60}
+            fill="currentColor"
+            className="bi bi-person text-info"
+            viewBox="0 0 16 16"
+          >
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+          </svg>
+          Account recovery
+        </h1>
+        <form onSubmit={handleSubmit} className="text-center">
+          <div className="row mb-3 ">
             <div className="col-12 mb-4">
               <label className="text-center fw-bold fs-3 me-3">
                 <svg
@@ -140,9 +149,16 @@ Account recovery</h1>
             </div>
             <div className="col-12 mb-4">
               <label className="text-center fw-bold fs-3 me-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width={40} height={40} fill="currentColor" className="bi bi-lock text-info me-3" viewBox="0 0 16 16">
-  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
-</svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={40}
+                  height={40}
+                  fill="currentColor"
+                  className="bi bi-lock text-info me-3"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
+                </svg>
                 Code
               </label>
               <input
@@ -161,14 +177,10 @@ Account recovery</h1>
               >
                 {!loader ? "Submit" : "Please wait..."}
               </button>
-              </div>
-              </div>
-            </form>
-           
-         
-        </div>
-       
-      
+            </div>
+          </div>
+        </form>
+      </div>
     </>
   );
 }

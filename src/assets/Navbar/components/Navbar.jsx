@@ -4,7 +4,8 @@ import { UserContext } from "../../../context/User";
 import "./Navbar.css";
 
 function Navbar() {
-  const { userName, setUserToken, setUserName,cartCount } = useContext(UserContext);
+  const { userName, setUserToken, setUserName, cartCount } =
+    useContext(UserContext);
   const navigate = useNavigate();
 
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -86,9 +87,12 @@ function Navbar() {
                     aria-current="page"
                     to="/Cart"
                   >
-                    Cart   {cartCount > 0 && (
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{cartCount}</span> 
-                )}
+                    Cart{" "}
+                    {cartCount > 0 && (
+                      <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {cartCount}
+                      </span>
+                    )}
                   </NavLink>
                 </li>
 

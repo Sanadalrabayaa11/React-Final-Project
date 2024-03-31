@@ -1,33 +1,32 @@
 /* Your existing styles */
 .loader {
-    width: 120px;
-    height: 22px;
-    border-radius: 40px;
-    color: #44b4cb;
-    border: 2px solid;
-    position: absolute; /* Change to absolute positioning */
-    top: 50%; /* Vertically center the loader */
-    left: 50%; /* Horizontally center the loader */
-    transform: translate(-50%, -50%); /* Adjust for centering */
+  width: 120px;
+  height: 22px;
+  border-radius: 40px;
+  color: #44b4cb;
+  border: 2px solid;
+  position: absolute; /* Change to absolute positioning */
+  top: 50%; /* Vertically center the loader */
+  left: 50%; /* Horizontally center the loader */
+  transform: translate(-50%, -50%); /* Adjust for centering */
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  margin: 2px;
+  width: 25%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  background: currentColor;
+  animation: l3 1s infinite linear;
+}
+
+@keyframes l3 {
+  50% {
+    left: 100%;
+    transform: translateX(calc(-100% - 4px));
   }
-  
-  .loader::before {
-    content: "";
-    position: absolute;
-    margin: 2px;
-    width: 25%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: inherit;
-    background: currentColor;
-    animation: l3 1s infinite linear;
-  }
-  
-  @keyframes l3 {
-    50% {
-      left: 100%;
-      transform: translateX(calc(-100% - 4px));
-    }
-  }
-  
+}

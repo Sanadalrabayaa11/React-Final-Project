@@ -1,5 +1,5 @@
 import axios from "axios";
-import  { useState } from "react";
+import { useState } from "react";
 import { object, string } from "yup";
 import { Bounce, Slide, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -41,7 +41,7 @@ function Register() {
       await RegisterSchema.validate(user, { abortEarly: false });
       return true;
     } catch (error) {
-      console.log("validation error", error.errors);
+      //console.log("validation error", error.errors);
       setErrors(error.errors);
       setLoader(false);
       return false;

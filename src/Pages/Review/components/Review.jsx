@@ -1,5 +1,4 @@
-import  { useState } from "react";
-import "./Review.css";
+import { useState } from "react";
 import axios from "axios";
 import { Bounce, toast } from "react-toastify";
 import { object, string } from "yup";
@@ -49,7 +48,7 @@ function Review() {
       return false; // Validation failed
     }
   };
-  
+
   const handelSubmit = async (e) => {
     e.preventDefault();
     setLoadr(true);
@@ -108,64 +107,68 @@ function Review() {
 
   return (
     <>
-       <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-body">
-              <h1 className="text-center mb-4">Add Review</h1>
-              <form onSubmit={handelSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="comment" className="form-label">Comment</label>
-                  <input
-                    type="text"
-                    id="comment"
-                    name="comment"
-                    value={user.comment}
-                    onChange={handelChange}
-                    className="form-control"
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="rating" className="form-label">Rating</label>
-                  <input
-                    type="number"
-                    id="rating"
-                    name="rating"
-                    value={user.rating}
-                    onChange={handelChange}
-                    className="form-control"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  disabled={loader}
-                >
-                  {!loader ? "Add" : "Please wait..."}
-                </button>
-              </form>
-              
+      <div className="container mt-5">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <div className="card">
+              <div className="card-body">
+                <h1 className="text-center mb-4">Add Review</h1>
+                <form onSubmit={handelSubmit}>
+                  <div className="mb-3">
+                    <label htmlFor="comment" className="form-label">
+                      Comment
+                    </label>
+                    <input
+                      type="text"
+                      id="comment"
+                      name="comment"
+                      value={user.comment}
+                      onChange={handelChange}
+                      className="form-control"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="rating" className="form-label">
+                      Rating
+                    </label>
+                    <input
+                      type="number"
+                      id="rating"
+                      name="rating"
+                      value={user.rating}
+                      onChange={handelChange}
+                      className="form-control"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    disabled={loader}
+                  >
+                    {!loader ? "Add" : "Please wait..."}
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="row justify-content-center mt-3">
-        <div className="col-md-6">
-          <ul className="list-group">
-            {errors.map((error, index) => (
-              <li key={index} className="list-group-item list-group-item-danger">{error}</li>
-            ))}
-          </ul>
+        <div className="row justify-content-center mt-3">
+          <div className="col-md-6">
+            <ul className="list-group">
+              {errors.map((error, index) => (
+                <li
+                  key={index}
+                  className="list-group-item list-group-item-danger"
+                >
+                  {error}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 }
 
 export default Review;
-
-
-
-

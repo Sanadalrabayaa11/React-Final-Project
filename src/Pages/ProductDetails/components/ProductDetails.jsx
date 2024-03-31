@@ -40,7 +40,7 @@ function ProductDetails() {
         updateCartCount(1); // Update cart count in context
       }
     } catch (error) {
-      console.error("Error adding to cart:", error);
+     // console.error("Error adding to cart:", error);
       if (error.response) {
         toast.error(error.response.data.message, {
           position: "bottom-center",
@@ -93,17 +93,20 @@ function ProductDetails() {
         setLoader(false);
       } catch (error) {
         console.error("Error fetching product details:", error);
-        toast.error(error.response?.data.message || "Failed to fetch product details", {
-          position: "bottom-center",
-          autoClose: false,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Bounce,
-        });
+        toast.error(
+          error.response?.data.message || "Failed to fetch product details",
+          {
+            position: "bottom-center",
+            autoClose: false,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+          }
+        );
       }
     };
 
@@ -123,19 +126,27 @@ function ProductDetails() {
                   <div className="card-body">
                     <h4 className="card-title fw-bold ">{product.name}</h4>
                     <p className="card-text text-capitalize fst-italic fw-semibold">
-                      <span className="text-uppercase fw-bolder text-info">Description:</span>{" "}
+                      <span className="text-uppercase fw-bolder text-info">
+                        Description:
+                      </span>{" "}
                       {product.description}
                     </p>
                     <p className="card-text text-capitalize fst-italic fw-semibold">
-                      <span className="text-uppercase fw-bolder text-info">Slug:</span>{" "}
+                      <span className="text-uppercase fw-bolder text-info">
+                        Slug:
+                      </span>{" "}
                       {product.slug}
                     </p>
                     <p className="card-text fst-italic fw-semibold text-success">
-                      <span className="text-uppercase fw-bolder text-info">Price:</span> $
-                      {product.price}
+                      <span className="text-uppercase fw-bolder text-info">
+                        Price:
+                      </span>{" "}
+                      ${product.price}
                     </p>
                     <p className="card-text mb-4 fst-italic fw-semibold text-danger">
-                      <span className="text-uppercase fw-bolder text-info">Status: </span>
+                      <span className="text-uppercase fw-bolder text-info">
+                        Status:{" "}
+                      </span>
                       {product.status}
                     </p>
                     <div className="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-2 g-md-3 g-lg-4">
@@ -163,13 +174,14 @@ function ProductDetails() {
                           className="bi bi-cart"
                           viewBox="0 0 16 16"
                         >
-                          <path
-                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"
-                          />
+                          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                         </svg>
                         Add to Cart
                       </button>
-                      <Link to={`/categories/${product._id}/productDetails/${product._id}/review`} className="btn btn-secondary">
+                      <Link
+                        to={`/categories/${product._id}/productDetails/${product._id}/review`}
+                        className="btn btn-secondary"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width={40}
@@ -203,16 +215,3 @@ function ProductDetails() {
   );
 }
 export default ProductDetails;
-
-
-
-
-
-
-
-
-
-
-
-
-

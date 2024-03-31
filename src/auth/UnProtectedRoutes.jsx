@@ -1,12 +1,11 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
 
-function unProtectedRoutes({children}) {
-    const token=localStorage.getItem('userToken');
-    if(!token){
-      return children;
-    }
-  return <Navigate to='/Login'  replace/>
-
+function unProtectedRoutes({ children }) {
+  const token = localStorage.getItem("userToken");
+  if (!token) {
+    return children;
+  }
+  return <Navigate to="/Login" replace />;
 }
 
-export default unProtectedRoutes
+export default unProtectedRoutes;

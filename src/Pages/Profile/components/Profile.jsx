@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Loader from "../../Loader/components/Loader";
-import style from"./Profile.module.css"
+import style from "./Profile.module.css";
 
 function Profile() {
   const [userProfile, setUserProfile] = useState({});
@@ -13,7 +13,7 @@ function Profile() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getProfile(); 
+    getProfile();
   }, [currentSection]);
 
   const getProfile = async () => {
@@ -59,8 +59,7 @@ function Profile() {
 
   return (
     <div className="border border-primary border-5">
-   
-      <div className="d-flex "> 
+      <div className="d-flex ">
         <div className="collapse d-block sidebar collapse bg-secondary bg-opacity-25 col-la-4 col-sm-3 col-xs-2  ">
           <div className="position-sticky d-block  ">
             <div className="list-group list-group-flush mx-3 mt-4 border border-info  ">
@@ -82,7 +81,7 @@ function Profile() {
             </div>
           </div>
         </div>
-  
+
         <div className="col-9 col-la-8 col-md-5 col-sm-4 ">
           {loader && <Loader />}
           {error && <p>{error}</p>}
@@ -94,7 +93,7 @@ function Profile() {
           )}
         </div>
       </div>
-  
+
       {/* Conditional rendering of Orders component */}
       {currentSection === "orders" && !loader && !error && (
         <div className="col-12 mt-3">
@@ -102,11 +101,7 @@ function Profile() {
         </div>
       )}
     </div>
-   
   );
-  
-  
-  
 }
 
 function SidebarItem({ text, onClick, active }) {
@@ -126,30 +121,45 @@ function SidebarItem({ text, onClick, active }) {
 function PersonalInformation({ user }) {
   return (
     <div className={`${style.profilePage}`}>
-    <div className="col-6 col-xl-8 col-lg-4 col-md-3 col-sm-12 px-3">
-      {/* Adjust column sizes for different screen sizes */}
-      <h2 className="mb-4 text-center  ">Personal information</h2>
-      {user.image && user.image.secure_url ? (
-        <>
-          <p className="fs-5 mb-3"> <span className="fw-bold">Name: </span>{user.userName}</p>
-          <span className="fw-bold me-3">Photo:</span>
-          {/* Add responsive classes to adjust image size */}
-          <img className=" mt-3 mb-5 border border-danger border-3  " src={user.image.secure_url} alt="Profile" />
-        </>
-      ) : (
-        <p className="text-danger fw-bold text-center">No image available</p>
-      )}
-    </div>
+      <div className="col-6 col-xl-8 col-lg-4 col-md-3 col-sm-12 px-3">
+        {/* Adjust column sizes for different screen sizes */}
+        <h2 className="mb-4 text-center  ">Personal information</h2>
+        {user.image && user.image.secure_url ? (
+          <>
+            <p className="fs-5 mb-3">
+              {" "}
+              <span className="fw-bold">Name: </span>
+              {user.userName}
+            </p>
+            <span className="fw-bold me-3">Photo:</span>
+            {/* Add responsive classes to adjust image size */}
+            <img
+              className=" mt-3 mb-5 border border-danger border-3  "
+              src={user.image.secure_url}
+              alt="Profile"
+            />
+          </>
+        ) : (
+          <p className="text-danger fw-bold text-center">No image available</p>
+        )}
+      </div>
     </div>
   );
 }
 
 function EmailPassword({ user }) {
   return (
-    <div className="col-9 col-md-12 col-lg-9 col-sm-12 px-2 text-center"> {/* Adjust column sizes for different screen sizes */}
+    <div className="col-9 col-md-12 col-lg-9 col-sm-12 px-2 text-center">
+      {" "}
+      {/* Adjust column sizes for different screen sizes */}
       <h2 className="mb-4">Email & Password</h2>
-      <p className=" mb-3"><span className="fw-bold">Email:</span> {user.email}</p>
-      <p className="fs-5 mb-3"><span className="fw-bold">Change Password Time:</span> {user.changePasswordTime}</p>
+      <p className=" mb-3">
+        <span className="fw-bold">Email:</span> {user.email}
+      </p>
+      <p className="fs-5 mb-3">
+        <span className="fw-bold">Change Password Time:</span>{" "}
+        {user.changePasswordTime}
+      </p>
       <Link to="/sendcode" className="btn btn-outline-primary mb-5">
         Change Password
       </Link>
@@ -189,12 +199,5 @@ function Orders({ orders }) {
     </div>
   );
 }
-
-
-
-
-
-
-
 
 export default Profile;
