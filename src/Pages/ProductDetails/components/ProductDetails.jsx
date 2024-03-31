@@ -10,6 +10,7 @@ function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [loader, setLoader] = useState(true);
   const { updateCartCount } = useContext(UserContext);
+  const [showReviews, setShowReviews] = useState(false);
 
   const setAddCart = async (productId) => {
     try {
@@ -40,7 +41,7 @@ function ProductDetails() {
         updateCartCount(1); // Update cart count in context
       }
     } catch (error) {
-     // console.error("Error adding to cart:", error);
+      // console.error("Error adding to cart:", error);
       if (error.response) {
         toast.error(error.response.data.message, {
           position: "bottom-center",
@@ -162,6 +163,22 @@ function ProductDetails() {
                       ))}
                     </div>
                     <div className="d-flex justify-content-between align-items-center mb-3">
+                      <Link
+                        to={`/categories/${product._id}/productDetails/${product._id}/review`}
+                        className="btn btn-secondary"
+                      >
+                        Add Review
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width={40}
+                          height={20}
+                          fill="currentColor"
+                          className="bi bi-chat"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105" />
+                        </svg>
+                      </Link>
                       <button
                         onClick={() => setAddCart(product._id)}
                         className="btn btn-info me-3"
@@ -178,10 +195,15 @@ function ProductDetails() {
                         </svg>
                         Add to Cart
                       </button>
-                      <Link
-                        to={`/categories/${product._id}/productDetails/${product._id}/review`}
-                        className="btn btn-secondary"
+                    </div>
+                    <div>
+                      <button
+                        className="btn btn-dark"
+                        onClick={() => setShowReviews(!showReviews)}
+                        aria-controls="reviewCollapse"
+                        aria-expanded={showReviews}
                       >
+                        {showReviews ? "Hide Reviews" : "Show Reviews"}
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width={40}
@@ -192,8 +214,29 @@ function ProductDetails() {
                         >
                           <path d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105" />
                         </svg>
-                        Add Review
-                      </Link>
+                      </button>
+
+                      <div
+                        className={`collapse${showReviews ? " show" : ""}`}
+                        id="reviewCollapse"
+                      >
+                        {product.reviews.slice(0, 2).map((review, index) => (
+                          <div
+                            key={index}
+                            className="mb-3 d-flex p-1 bg-info mt-2 rounded"
+                          >
+                            <p className="me-2 ">
+                              Comment :
+                              <span className="ms-2 ">{review.comment}</span>
+                            </p>
+                            <p className="me-2 ">&&</p>
+                            <p className="">
+                              Rating :
+                              <span className="ms-2">{review.rating}</span>
+                            </p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
