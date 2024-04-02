@@ -20,18 +20,15 @@ const UserContextProvider = ({ children }) => {
   const fetchCartCount = async () => {
     try {
       const token = localStorage.getItem("userToken");
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API}/cart`,
-        {
-          headers: {
-            Authorization: `Tariq__${token}`,
-          },
-        }
-      );
+      const { data } = await axios.get(`${import.meta.env.VITE_API}/cart`, {
+        headers: {
+          Authorization: `Tariq__${token}`,
+        },
+      });
       setCartCount(data.count);
     } catch (error) {
       // console.error("Error fetching cart count:", error);
-       toast.error(error.response.data.message, {
+      toast.error(error.response.data.message, {
         position: "bottom-center",
         autoClose: false,
         hideProgressBar: false,
@@ -42,7 +39,6 @@ const UserContextProvider = ({ children }) => {
         theme: "dark",
         transition: Bounce,
       });
-    
     }
   };
 

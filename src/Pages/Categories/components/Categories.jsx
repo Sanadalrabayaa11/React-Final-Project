@@ -23,7 +23,7 @@ function Categories() {
   }, []);
 
   return (
-    <div className="border border-info p-5 mb-5 mt-5 rounded border border-5 ">
+    <div className="border border-info p-5 mb-5 mt-5 rounded border border-5 bg-info ">
       <h2 className="mb-5 d-flex justify-content-center fs-1">Categories</h2>
       <div className="row">
         {categories.map((category) => (

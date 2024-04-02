@@ -5,7 +5,7 @@ import "./Root.css";
 
 function Root() {
   return (
-    <div className="container">
+    <div className="ms-5 me-5">
       <Navbar />
       <Outlet />
       <Footer />

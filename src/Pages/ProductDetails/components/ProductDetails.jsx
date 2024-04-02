@@ -223,17 +223,27 @@ function ProductDetails() {
                         {product.reviews.slice(0, 2).map((review, index) => (
                           <div
                             key={index}
-                            className="mb-3 d-flex p-1 bg-info mt-2 rounded"
+                            className=" d-flex  bg-secondary mt-2 rounded-4"
                           >
-                            <p className="me-2 ">
-                              Comment :
-                              <span className="ms-2 ">{review.comment}</span>
-                            </p>
-                            <p className="me-2 ">&&</p>
-                            <p className="">
-                              Rating :
-                              <span className="ms-2">{review.rating}</span>
-                            </p>
+                            <img
+                              className="w-25 me-2 rounded-circle"
+                              src={review.createdBy.image.secure_url}
+                              alt="user"
+                            />
+                            <div>
+                              <p className="fw-bold">
+                                <span className="text-light">Name :</span>{" "}
+                                {review.createdBy.userName}
+                              </p>
+                              <p className="fw-bold">
+                                <span className="text-light">Comment :</span>{" "}
+                                {review.comment}
+                              </p>
+                              <p className="fw-bold">
+                                <span className="text-light">Rating :</span>{" "}
+                                {review.rating}
+                              </p>
+                            </div>
                           </div>
                         ))}
                       </div>
